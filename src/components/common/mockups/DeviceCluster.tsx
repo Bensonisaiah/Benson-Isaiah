@@ -52,7 +52,11 @@ export const DeviceCluster: React.FC<DeviceClusterProps> = ({ className = '' }) 
       </div>
 
       {/* Main 3D Floating Stage Container */}
-      <div className="relative w-full max-w-[680px] lg:max-w-[740px] h-[340px] sm:h-[400px] md:h-[440px] lg:h-[470px] flex items-center justify-center">
+      <div
+        className={`relative w-full max-w-[680px] lg:max-w-[740px] h-[320px] sm:h-[370px] md:h-[400px] lg:h-[420px] flex justify-center ${
+          focus === 'all' ? 'items-start pt-2' : 'items-center'
+        }`}
+      >
         {/* Ambient Backlight Glow */}
         <div className="absolute inset-0 bg-gradient-to-tr from-neutral-200/50 via-emerald-500/5 to-indigo-500/5 dark:from-emerald-600/10 dark:via-indigo-600/5 dark:to-transparent rounded-full blur-3xl pointer-events-none -z-10" />
 

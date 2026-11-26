@@ -14,7 +14,7 @@ export const Hero: React.FC = () => {
       <div className="absolute inset-0 bg-gradient-to-t from-transparent via-transparent to-neutral-200/30 dark:to-transparent pointer-events-none" />
 
       <Container className="relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-start">
           {/* Left Column: Authority, Value Proposition & Actionable CTAs */}
           <div className="lg:col-span-6 xl:col-span-6 flex flex-col items-start text-left">
             {/* Top Pill Badge */}
