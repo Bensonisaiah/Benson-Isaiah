@@ -21,18 +21,18 @@ export const Logo: React.FC<LogoProps> = ({
     <div className={`flex items-center gap-2.5 group ${className}`}>
       {/* Gothic B-I-Z Monogram Emblem */}
       <div
-        className={`${sizeStyles[size]} bg-black/70 border border-white/15 overflow-hidden flex items-center justify-center shadow-md shadow-black/50 group-hover:border-indigo-500/50 group-hover:scale-105 group-hover:shadow-indigo-500/10 transition-all duration-300`}
+        className={`${sizeStyles[size]} bg-neutral-950 dark:bg-black/80 border border-neutral-800 dark:border-white/15 overflow-hidden flex items-center justify-center shadow-sm dark:shadow-md dark:shadow-black/50 group-hover:border-neutral-700 dark:group-hover:border-white/30 group-hover:scale-105 transition-all duration-300`}
       >
         <img
           src="/logo.png"
           alt="Benson Isaiah Emblem"
-          className="w-full h-full object-contain filter drop-shadow-[0_0_8px_rgba(255,255,255,0.15)] group-hover:drop-shadow-[0_0_12px_rgba(129,140,248,0.4)] transition-all duration-300"
+          className="w-full h-full object-contain filter drop-shadow-[0_0_8px_rgba(255,255,255,0.15)] group-hover:drop-shadow-[0_0_12px_rgba(255,255,255,0.3)] transition-all duration-300"
           loading="eager"
         />
       </div>
 
       {showText && (
-        <span className="font-heading font-semibold text-lg sm:text-xl tracking-tight bg-gradient-to-r from-white via-gray-100 to-gray-300 bg-clip-text text-transparent">
+        <span className="font-heading font-semibold text-lg sm:text-xl tracking-tight text-neutral-950 dark:text-white">
           Benson Isaiah
         </span>
       )}

@@ -15,10 +15,10 @@ export const Badge: React.FC<BadgeProps> = ({
   className = '',
 }) => {
   const variantStyles = {
-    primary: 'bg-indigo-500/10 text-indigo-400 border-indigo-500/20',
-    secondary: 'bg-white/5 text-gray-300 border-white/10',
-    outline: 'bg-transparent text-gray-400 border-white/15',
-    emerald: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20',
+    primary: 'bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border-indigo-500/20',
+    secondary: 'bg-neutral-100 text-neutral-700 border-neutral-200 dark:bg-white/5 dark:text-neutral-300 dark:border-white/10',
+    outline: 'bg-transparent text-neutral-600 border-neutral-300 dark:text-neutral-400 dark:border-white/15',
+    emerald: 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20',
   };
 
   return (

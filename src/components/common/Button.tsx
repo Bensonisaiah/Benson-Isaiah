@@ -22,7 +22,7 @@ export const Button: React.FC<ButtonProps> = ({
   ...rest
 }) => {
   const baseStyles =
-    'inline-flex items-center justify-center font-body font-semibold rounded-xl transition-all duration-200 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed';
+    'inline-flex items-center justify-center font-body font-semibold rounded-full transition-all duration-200 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed';
 
   const sizeStyles = {
     sm: 'text-xs px-3.5 py-1.5 gap-1.5',
@@ -32,12 +32,13 @@ export const Button: React.FC<ButtonProps> = ({
 
   const variantStyles = {
     primary:
-      'bg-indigo-600 hover:bg-indigo-500 text-white shadow-lg shadow-indigo-600/25 hover:shadow-indigo-500/35 hover:-translate-y-0.5',
+      'bg-neutral-950 text-white hover:bg-black dark:bg-white dark:text-neutral-950 dark:hover:bg-neutral-200 shadow-md hover:-translate-y-0.5',
     secondary:
-      'bg-white/10 hover:bg-white/15 text-white border border-white/10 hover:border-white/20',
+      'bg-neutral-100 text-neutral-900 border border-neutral-300 hover:bg-neutral-200 dark:bg-white/10 dark:text-white dark:border-white/15 dark:hover:bg-white/20',
     outline:
-      'border border-indigo-500/40 hover:border-indigo-400 text-indigo-400 hover:text-white hover:bg-indigo-600/10',
-    ghost: 'text-gray-300 hover:text-white hover:bg-white/5',
+      'border border-neutral-300 text-neutral-800 hover:border-neutral-900 hover:text-neutral-950 dark:border-white/20 dark:text-neutral-200 dark:hover:border-white dark:hover:text-white',
+    ghost:
+      'text-neutral-600 hover:text-neutral-950 hover:bg-neutral-100 dark:text-neutral-400 dark:hover:text-white dark:hover:bg-white/5',
   };
 
   const combinedStyles = `${baseStyles} ${sizeStyles[size]} ${variantStyles[variant]} ${className}`;

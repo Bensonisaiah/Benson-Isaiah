@@ -62,3 +62,17 @@ export interface ExperienceItem {
   description: string[];
   technologies: string[];
 }
+
+export interface DeviceMockupItem {
+  image?: string; // Image path or URL (e.g. '/mockups/laptop.png'). If empty, falls back to built-in product UI preview
+  title: string;
+  subtitle?: string;
+  url?: string; // Display URL shown in browser bar (e.g. 'bensonisaiah.dev/platform')
+}
+
+export interface HeroMockupsConfig {
+  laptop: DeviceMockupItem;
+  tablet: DeviceMockupItem;
+  phone: DeviceMockupItem;
+}
+
