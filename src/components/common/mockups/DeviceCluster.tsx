@@ -24,9 +24,9 @@ export const DeviceCluster: React.FC<DeviceClusterProps> = ({ className = '' }) 
   const caption = captionMap[focus];
 
   return (
-    <div className={`relative flex flex-col items-center select-none ${className}`}>
+    <div className={`relative flex flex-col items-center select-none h-[80vh] ${className}`}>
       {/* Device Viewport Selector Tabs */}
-      <div className="flex items-center gap-1 p-1 rounded-full bg-neutral-200/80 dark:bg-neutral-900/90 border border-neutral-300/80 dark:border-white/10 backdrop-blur-md mb-4 shadow-sm z-30 flex-wrap justify-center">
+      <div className="flex items-center gap-1 p-1 rounded-full bg-neutral-200/80 dark:bg-neutral-900/90 border border-neutral-300/80 dark:border-white/10 backdrop-blur-md mb-12 shadow-sm z-30 flex-wrap justify-center">
         {(
           [
             { key: 'all', icon: 'mdi:devices', label: 'All Devices' },
