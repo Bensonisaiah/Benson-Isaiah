@@ -20,6 +20,8 @@ export const LaptopMockup: React.FC<LaptopMockupProps> = ({ mockup, className = 
         <img
           src={mockup.image}
           alt={mockup.title}
+          fetchPriority="high"
+          decoding="async"
           className="w-full h-auto object-contain drop-shadow-[0_25px_50px_rgba(0,0,0,0.35)] dark:drop-shadow-[0_25px_50px_rgba(0,0,0,0.8)]"
         />
       </div>

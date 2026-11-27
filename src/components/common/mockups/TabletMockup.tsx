@@ -16,6 +16,8 @@ export const TabletMockup: React.FC<TabletMockupProps> = ({ mockup, className = 
         <img
           src={mockup.image}
           alt={mockup.title}
+          fetchPriority="high"
+          decoding="async"
           onError={() => setImageError(true)}
           className="w-full h-auto object-contain block drop-shadow-[0_20px_35px_rgba(0,0,0,0.45)] dark:drop-shadow-[0_25px_45px_rgba(0,0,0,0.75)] transition-transform duration-300"
         />

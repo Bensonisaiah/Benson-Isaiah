@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { Icon } from '@iconify/react';
+import { gsap, ScrollTrigger, useGSAP } from '../../../lib/gsap';
 import { projects } from '../../../data/projects';
 import type { ProjectCategory } from '../../../types';
 import { Container } from '../../common/Container';
@@ -11,14 +12,62 @@ const categories: ProjectCategory[] = ['All', 'Full Stack', 'Frontend'];
 
 export const Projects: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<ProjectCategory>('All');
+  const sectionRef = useRef<HTMLElement>(null);
+  const gridRef = useRef<HTMLDivElement>(null);
+  const hasInteractedRef = useRef(false);
 
   const filteredProjects =
     selectedCategory === 'All'
       ? projects
       : projects.filter((project) => project.category === selectedCategory);
 
+  useGSAP(
+    () => {
+      const mm = gsap.matchMedia();
+      mm.add('(prefers-reduced-motion: no-preference)', () => {
+        if (!hasInteractedRef.current) {
+          gsap.from('.project-card', {
+            y: 30,
+            scale: 0.96,
+            opacity: 0,
+            duration: 0.6,
+            stagger: 0.1,
+            ease: 'power3.out',
+            clearProps: 'transform,opacity',
+            scrollTrigger: {
+              trigger: gridRef.current,
+              start: 'top 84%',
+              once: true,
+            },
+          });
+        } else {
+          gsap.fromTo(
+            '.project-card',
+            { y: 20, scale: 0.96, opacity: 0 },
+            {
+              y: 0,
+              scale: 1,
+              opacity: 1,
+              duration: 0.45,
+              stagger: 0.07,
+              ease: 'power3.out',
+              clearProps: 'transform,opacity',
+            }
+          );
+          ScrollTrigger.refresh();
+        }
+      });
+    },
+    { scope: gridRef, dependencies: [selectedCategory] }
+  );
+
+  const handleCategoryChange = (cat: ProjectCategory) => {
+    hasInteractedRef.current = true;
+    setSelectedCategory(cat);
+  };
+
   return (
-    <section id="projects" className="py-20 sm:py-28 border-t border-neutral-200 dark:border-white/5 relative">
+    <section ref={sectionRef} id="projects" className="py-12 sm:py-16 border-t border-neutral-200 dark:border-white/5 relative">
       <Container>
         <SectionHeader
           badge="Portfolio"
@@ -32,7 +81,7 @@ export const Projects: React.FC = () => {
           {categories.map((cat) => (
             <button
               key={cat}
-              onClick={() => setSelectedCategory(cat)}
+              onClick={() => handleCategoryChange(cat)}
               className={`px-4 py-1.5 rounded-full text-xs sm:text-sm font-body font-medium transition-all ${
                 selectedCategory === cat
                   ? 'bg-neutral-950 text-white dark:bg-white dark:text-neutral-950 shadow-md font-semibold'
@@ -45,9 +94,9 @@ export const Projects: React.FC = () => {
         </div>
 
         {/* Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div ref={gridRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredProjects.map((project) => (
-            <Card key={project.id} className="flex flex-col h-full group">
+            <Card key={project.id} className="project-card flex flex-col h-full group">
               {/* Card top banner / preview box */}
               <div className="h-44 rounded-xl bg-gradient-to-tr from-neutral-100 to-neutral-200 dark:from-neutral-900/90 dark:to-neutral-950 border border-neutral-200 dark:border-white/10 flex items-center justify-center relative overflow-hidden mb-5">
                 <div className="text-center p-4">

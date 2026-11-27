@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { Icon } from '@iconify/react';
+import { gsap, useGSAP } from '../../lib/gsap';
 import { navLinks } from '../../data/navigation';
 import { personalInfo } from '../../data/personalInfo';
 import { useScrollHeader } from '../../hooks/useScrollHeader';
@@ -11,10 +12,25 @@ import { MobileNav } from './MobileNav';
 
 export const Navbar: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const progressRef = useRef<HTMLDivElement>(null);
   const isScrolled = useScrollHeader(20);
   const { theme, toggleTheme } = useTheme();
   const sectionIds = navLinks.map((link) => link.href.replace('#', ''));
   const activeSection = useActiveSection(sectionIds, 120);
+
+  useGSAP(() => {
+    if (!progressRef.current) return;
+    gsap.to(progressRef.current, {
+      scaleX: 1,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: document.documentElement,
+        start: 'top top',
+        end: 'bottom bottom',
+        scrub: 0.25,
+      },
+    });
+  });
 
   return (
     <>
@@ -25,6 +41,11 @@ export const Navbar: React.FC = () => {
             : 'bg-transparent py-5 sm:py-6'
         }`}
       >
+        {/* Top Scroll Progress Bar */}
+        <div
+          ref={progressRef}
+          className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-indigo-500 via-emerald-400 to-indigo-500 origin-left scale-x-0 pointer-events-none"
+        />
         <Container>
           <div className="flex items-center justify-between">
             {/* Left: Logo */}
