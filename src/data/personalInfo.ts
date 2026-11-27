@@ -21,12 +21,12 @@ export const personalInfo: PersonalInfo = {
     },
     {
       name: 'LinkedIn',
-      url: 'https://linkedin.com/in/bensonisaiah',
+      url: 'https://www.linkedin.com/in/isaiah-benson-310626324',
       icon: 'mdi:linkedin',
     },
     {
       name: 'Twitter / X',
-      url: 'https://twitter.com/bensonisaiah',
+      url: 'https://x.com/IsaiahBens71855',
       icon: 'mdi:twitter',
     },
     {

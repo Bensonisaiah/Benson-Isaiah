@@ -40,15 +40,61 @@ export const About: React.FC = () => {
         />
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
-          {/* Bio text cards */}
+          {/* Left Column: Portrait Card above "Who I Am" Card */}
           <div className="lg:col-span-7 space-y-6">
+            {/* Portrait Feature Card */}
+            <Card hoverEffect={false} className="p-4 sm:p-5">
+              <div className="flex flex-col sm:flex-row items-center gap-5 sm:gap-6">
+                <div className="relative w-full sm:w-52 md:w-56 aspect-square rounded-2xl overflow-hidden shrink-0 border border-neutral-200 dark:border-white/10 bg-neutral-900 shadow-md">
+                  <img
+                    src="/Myimage.jpeg"
+                    alt={personalInfo.name}
+                    className="w-full h-full object-cover object-top"
+                  />
+                </div>
+
+                <div className="flex-1 text-center sm:text-left space-y-3">
+                  <div>
+                    <h3 className="text-xl sm:text-2xl font-heading font-semibold text-neutral-950 dark:text-white">
+                      {personalInfo.name}
+                    </h3>
+                    <p className="text-sm font-body font-medium text-indigo-600 dark:text-indigo-400 mt-0.5">
+                      {personalInfo.title}
+                    </p>
+                  </div>
+
+                  <p className="text-xs sm:text-sm font-body text-neutral-600 dark:text-neutral-300 leading-relaxed">
+                    {personalInfo.tagline}
+                  </p>
+
+                  <div className="pt-2 flex flex-wrap items-center justify-center sm:justify-start gap-2.5">
+                    <a
+                      href="#contact"
+                      className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-neutral-950 text-white hover:bg-black dark:bg-white dark:text-neutral-950 dark:hover:bg-neutral-200 font-body font-semibold text-xs transition-all hover:scale-105"
+                    >
+                      <span>Let's Collaborate</span>
+                      <Icon icon="lucide:arrow-up-right" className="w-3.5 h-3.5" />
+                    </a>
+                    <span className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full bg-neutral-100 dark:bg-white/10 border border-neutral-200/80 dark:border-white/10 text-xs font-body text-neutral-600 dark:text-neutral-300">
+                      <Icon icon="mdi:map-marker-outline" className="w-3.5 h-3.5 text-indigo-600 dark:text-indigo-400" />
+                      {personalInfo.location}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </Card>
+
+            {/* Bio Card ("Who I Am") */}
             <Card hoverEffect={false} className="space-y-4">
               <h3 className="text-xl font-heading font-semibold text-neutral-950 dark:text-white flex items-center gap-2">
                 <Icon icon="mdi:card-account-details-outline" className="text-indigo-600 dark:text-indigo-400 w-6 h-6" />
                 Who I Am
               </h3>
               {personalInfo.bio.map((paragraph, index) => (
-                <p key={index} className="text-neutral-600 dark:text-neutral-300 font-body font-normal leading-relaxed text-sm sm:text-base">
+                <p
+                  key={index}
+                  className="text-neutral-600 dark:text-neutral-300 font-body font-normal leading-relaxed text-sm sm:text-base"
+                >
                   {paragraph}
                 </p>
               ))}
@@ -66,7 +112,7 @@ export const About: React.FC = () => {
             </Card>
           </div>
 
-          {/* Core Strengths Grid */}
+          {/* Right Column: Core Strengths Grid */}
           <div className="lg:col-span-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4">
             {highlights.map((item) => (
               <div

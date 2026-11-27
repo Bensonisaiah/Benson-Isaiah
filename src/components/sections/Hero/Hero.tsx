@@ -6,7 +6,7 @@ import { DeviceCluster } from '../../common/mockups/DeviceCluster';
 
 export const Hero: React.FC = () => {
   return (
-    <section className="relative pt-32 sm:pt-40 pb-20 sm:pb-28 overflow-hidden bg-gradient-to-b from-[#F9FAFB] via-[#F3F4F6] to-[#F9FAFB] dark:from-[#0B0C10] dark:via-[#0F1117] dark:to-[#0B0C10] transition-colors duration-300">
+    <section className="relative pt-32 sm:pt-40 pb-5 sm:pb-10 overflow-hidden bg-gradient-to-b from-[#F9FAFB] via-[#F3F4F6] to-[#F9FAFB] dark:from-[#0B0C10] dark:via-[#0F1117] dark:to-[#0B0C10] transition-colors duration-300">
       {/* Dot Grid Background Pattern: Darker in light mode, Lighter in dark mode */}
       <div className="absolute inset-0 bg-[radial-gradient(#374151_1.2px,transparent_1.2px)] dark:bg-[radial-gradient(#ffffff_1.2px,transparent_1.2px)] [background-size:24px_24px] pointer-events-none opacity-45 dark:opacity-30" />
 

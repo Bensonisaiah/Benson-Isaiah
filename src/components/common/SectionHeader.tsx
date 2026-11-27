@@ -21,7 +21,7 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({
   const alignmentClass = align === 'center' ? 'text-center mx-auto' : 'text-left';
 
   return (
-    <div className={`max-w-2xl mb-12 sm:mb-16 ${alignmentClass} ${className}`}>
+    <div className={`max-w-4xl mb-12 sm:mb-16 ${alignmentClass} ${className}`}>
       {badge && (
         <div className={`mb-3 ${align === 'center' ? 'flex justify-center' : ''}`}>
           <Badge label={badge} icon={badgeIcon} />
@@ -31,7 +31,11 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({
         {title}
       </h2>
       {subtitle && (
-        <p className="text-base sm:text-lg font-body font-normal text-neutral-600 dark:text-neutral-400 leading-relaxed">
+        <p
+          className={`max-w-2xl ${
+            align === 'center' ? 'mx-auto' : ''
+          } text-base sm:text-lg font-body font-normal text-neutral-600 dark:text-neutral-400 leading-relaxed`}
+        >
           {subtitle}
         </p>
       )}
