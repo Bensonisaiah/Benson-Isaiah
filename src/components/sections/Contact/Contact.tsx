@@ -1,17 +1,54 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { Icon } from '@iconify/react';
+import { gsap, useGSAP } from '../../../lib/gsap';
 import { personalInfo } from '../../../data/personalInfo';
 import { Container } from '../../common/Container';
 import { SectionHeader } from '../../common/SectionHeader';
 import { Card } from '../../common/Card';
 
 export const Contact: React.FC = () => {
+  const sectionRef = useRef<HTMLElement>(null);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     message: '',
   });
   const [submitted, setSubmitted] = useState(false);
+
+  useGSAP(
+    () => {
+      const mm = gsap.matchMedia();
+      mm.add('(prefers-reduced-motion: no-preference)', () => {
+        gsap.from('.contact-left', {
+          x: -24,
+          opacity: 0,
+          duration: 0.65,
+          ease: 'power3.out',
+          clearProps: 'transform,opacity',
+          scrollTrigger: {
+            trigger: '.contact-grid',
+            start: 'top 84%',
+            once: true,
+          },
+        });
+
+        gsap.from('.contact-right', {
+          x: 24,
+          opacity: 0,
+          duration: 0.65,
+          delay: 0.1,
+          ease: 'power3.out',
+          clearProps: 'transform,opacity',
+          scrollTrigger: {
+            trigger: '.contact-grid',
+            start: 'top 84%',
+            once: true,
+          },
+        });
+      });
+    },
+    { scope: sectionRef }
+  );
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -22,7 +59,7 @@ export const Contact: React.FC = () => {
   };
 
   return (
-    <section id="contact" className="py-20 sm:py-28 border-t border-neutral-200 dark:border-white/5 relative">
+    <section ref={sectionRef} id="contact" className="py-12 sm:py-16 border-t border-neutral-200 dark:border-white/5 relative">
       <Container>
         <SectionHeader
           badge="Contact"
@@ -31,9 +68,9 @@ export const Contact: React.FC = () => {
           subtitle="Have an inquiry, project proposal, or just want to connect? Send me a message."
         />
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 max-w-5xl mx-auto">
+        <div className="contact-grid grid grid-cols-1 lg:grid-cols-12 gap-8 max-w-5xl mx-auto">
           {/* Direct contact info cards */}
-          <div className="lg:col-span-5 space-y-4">
+          <div className="contact-left lg:col-span-5 space-y-4">
             <Card hoverEffect={false} className="space-y-6">
               <h3 className="text-xl font-heading font-semibold text-neutral-950 dark:text-white">Contact Information</h3>
               <p className="text-sm font-body font-normal text-neutral-600 dark:text-neutral-400 leading-relaxed">
@@ -83,7 +120,7 @@ export const Contact: React.FC = () => {
           </div>
 
           {/* Form */}
-          <div className="lg:col-span-7">
+          <div className="contact-right lg:col-span-7">
             <Card hoverEffect={false}>
               {submitted ? (
                 <div className="py-12 text-center space-y-4">

@@ -1,11 +1,50 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Icon } from '@iconify/react';
+import { gsap, useGSAP } from '../../../lib/gsap';
 import { personalInfo } from '../../../data/personalInfo';
 import { Container } from '../../common/Container';
 import { SectionHeader } from '../../common/SectionHeader';
 import { Card } from '../../common/Card';
 
 export const About: React.FC = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useGSAP(
+    () => {
+      const mm = gsap.matchMedia();
+      mm.add('(prefers-reduced-motion: no-preference)', () => {
+        gsap.from('.about-left-card', {
+          y: 28,
+          opacity: 0,
+          duration: 0.65,
+          stagger: 0.15,
+          ease: 'power3.out',
+          clearProps: 'transform,opacity',
+          scrollTrigger: {
+            trigger: '.about-grid',
+            start: 'top 84%',
+            once: true,
+          },
+        });
+
+        gsap.from('.about-strength', {
+          y: 24,
+          scale: 0.96,
+          opacity: 0,
+          duration: 0.55,
+          stagger: 0.1,
+          ease: 'power3.out',
+          clearProps: 'transform,opacity',
+          scrollTrigger: {
+            trigger: '.about-strengths',
+            start: 'top 84%',
+            once: true,
+          },
+        });
+      });
+    },
+    { scope: sectionRef }
+  );
   const highlights = [
     {
       icon: 'mdi:code-braces',
@@ -30,7 +69,7 @@ export const About: React.FC = () => {
   ];
 
   return (
-    <section id="about" className="py-20 sm:py-28 border-t border-neutral-200 dark:border-white/5 relative">
+    <section ref={sectionRef} id="about" className="py-12 sm:py-16 border-t border-neutral-200 dark:border-white/5 relative">
       <Container>
         <SectionHeader
           badge="About Me"
@@ -39,16 +78,18 @@ export const About: React.FC = () => {
           subtitle="A glimpse into my background, philosophy, and approach to modern software development."
         />
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+        <div className="about-grid grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
           {/* Left Column: Portrait Card above "Who I Am" Card */}
           <div className="lg:col-span-7 space-y-6">
             {/* Portrait Feature Card */}
-            <Card hoverEffect={false} className="p-4 sm:p-5">
+            <Card hoverEffect={false} className="about-left-card p-4 sm:p-5">
               <div className="flex flex-col sm:flex-row items-center gap-5 sm:gap-6">
                 <div className="relative w-full sm:w-52 md:w-56 aspect-square rounded-2xl overflow-hidden shrink-0 border border-neutral-200 dark:border-white/10 bg-neutral-900 shadow-md">
                   <img
-                    src="/Myimage.jpeg"
+                    src="/Myimage.webp"
                     alt={personalInfo.name}
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-cover object-top"
                   />
                 </div>
@@ -85,7 +126,7 @@ export const About: React.FC = () => {
             </Card>
 
             {/* Bio Card ("Who I Am") */}
-            <Card hoverEffect={false} className="space-y-4">
+            <Card hoverEffect={false} className="about-left-card space-y-4">
               <h3 className="text-xl font-heading font-semibold text-neutral-950 dark:text-white flex items-center gap-2">
                 <Icon icon="mdi:card-account-details-outline" className="text-indigo-600 dark:text-indigo-400 w-6 h-6" />
                 Who I Am
@@ -113,11 +154,11 @@ export const About: React.FC = () => {
           </div>
 
           {/* Right Column: Core Strengths Grid */}
-          <div className="lg:col-span-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4">
+          <div className="about-strengths lg:col-span-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4">
             {highlights.map((item) => (
               <div
                 key={item.title}
-                className="p-5 rounded-2xl bg-white/80 dark:bg-white/5 border border-neutral-200 dark:border-white/10 hover:border-neutral-400 dark:hover:border-indigo-500/30 shadow-sm transition-all group"
+                className="about-strength p-5 rounded-2xl bg-white/80 dark:bg-white/5 border border-neutral-200 dark:border-white/10 hover:border-neutral-400 dark:hover:border-indigo-500/30 shadow-sm transition-all group"
               >
                 <div className="w-10 h-10 rounded-xl bg-neutral-100 dark:bg-white/10 text-neutral-800 dark:text-indigo-400 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
                   <Icon icon={item.icon} className="w-5 h-5" />

@@ -15,22 +15,22 @@ import type { HeroMockupsConfig } from '../types';
  */
 export const heroMockupsConfig: HeroMockupsConfig = {
   laptop: {
-    // Transparent-background static image of full Dell laptop with UI
-    image: '/mockups/laptop-studguide.png',
+    // Transparent-background static image of full Dell laptop with UI (WebP)
+    image: '/mockups/laptop-studguide.webp',
     title: 'StudGuide — Interactive Learning Platform',
     subtitle: 'EdTech · 2800+ Online Courses · Desktop Web App',
     url: 'stud-guide.vercel.app',
   },
   tablet: {
-    // Transparent-background static image of full iPad device with UI
-    image: '/mockups/tablet-studguide.png',
+    // Transparent-background static image of full iPad device with UI (WebP)
+    image: '/mockups/tablet-studguide.webp',
     title: 'StudGuide — Interactive Learning Platform',
     subtitle: 'EdTech · 2800+ Online Courses · Responsive Web App',
     url: 'stud-guide.vercel.app',
   },
   phone: {
-    // Transparent-background static image of full iPhone device with UI
-    image: '/mockups/phone-studguide.png',
+    // Transparent-background static image of full iPhone device with UI (WebP)
+    image: '/mockups/phone-studguide.webp',
     title: 'StudGuide Mobile',
     subtitle: 'Progressive Web App · iOS & Android Optimized',
     url: 'stud-guide.vercel.app',
