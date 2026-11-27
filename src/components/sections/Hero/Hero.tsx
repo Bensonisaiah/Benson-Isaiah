@@ -16,7 +16,21 @@ export const Hero: React.FC = () => {
 
         tl.from('.hero-badge', { y: 18, opacity: 0, duration: 0.5, clearProps: 'transform,opacity' })
           .from('.hero-title', { y: 28, opacity: 0, duration: 0.65, clearProps: 'transform,opacity' }, '-=0.3')
-          .from('.hero-subtitle', { y: 20, opacity: 0, duration: 0.55, clearProps: 'transform,opacity' }, '-=0.4')
+          .fromTo(
+            '.scalable-char',
+            { opacity: 0, y: 8, clipPath: 'inset(0 100% 0 0)' },
+            {
+              opacity: 1,
+              y: 0,
+              clipPath: 'inset(0 0% 0 0)',
+              duration: 0.35,
+              stagger: 0.15,
+              ease: 'power2.out',
+              clearProps: 'transform,opacity,clipPath',
+            },
+            '-=0.15'
+          )
+          .from('.hero-subtitle', { y: 20, opacity: 0, duration: 0.55, clearProps: 'transform,opacity' }, '-=0.9')
           .from('.hero-cta', { y: 18, opacity: 0, duration: 0.5, stagger: 0.08, clearProps: 'transform,opacity' }, '-=0.35')
           .from('.hero-stat', { y: 20, opacity: 0, duration: 0.45, stagger: 0.07, clearProps: 'transform,opacity' }, '-=0.25')
           .from(
@@ -75,7 +89,13 @@ export const Hero: React.FC = () => {
             {/* Main Editorial Headline (Space Grotesk 600) */}
             <h1 className="hero-title text-4xl sm:text-5xl lg:text-6xl font-heading font-semibold tracking-tight text-neutral-950 dark:text-white leading-[1.08] mb-5">
               Engineering{' '}
-              <span className="text-stroke-2 text-neutral-950 dark:text-white">scalable</span>{' '}
+              <span className="text-stroke-2 text-neutral-950 dark:text-white inline-flex">
+                {'scalable'.split('').map((char, idx) => (
+                  <span key={idx} className="scalable-char inline-block">
+                    {char}
+                  </span>
+                ))}
+              </span>{' '}
               digital products with precision.
             </h1>
 
